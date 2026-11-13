@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebScope AI — Website Intelligence</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">W</span><span>WebScope <b>AI</b></span></div>
+  <div class="nav-label">WORKSPACE</div>
+  <a class="nav-item active" href="#"><span>▦</span> Dashboard</a>
+  <a class="nav-item" href="#history"><span>◷</span> Scraping history</a>
+  <div class="sidebar-bottom"><div class="status-dot"></div><div><b>System ready</b><small>Responsible crawling enabled</small></div></div>
+</aside>
+<main class="main">
+<header class="topbar"><div><div class="eyebrow">WEBSITE INTELLIGENCE PLATFORM</div><h1>Dashboard</h1></div><button id="themeBtn" class="btn btn-outline-secondary btn-sm">☼ Theme</button></header>
+<section class="hero-card">
+  <div class="hero-copy"><div class="pill">✦ AI-POWERED WEBSITE ANALYSIS</div><h2>Understand any public website.</h2><p>Extract structured content, discover pages, analyze metadata and generate actionable intelligence.</p></div>
+  <div class="url-form">
+    <label for="urlInput" class="form-label">Website URL</label>
+    <div class="input-group input-group-lg"><input id="urlInput" class="form-control" placeholder="https://example.com" type="url"><button id="scrapeBtn" class="btn btn-primary">Start scraping <span>→</span></button></div>
+    <div class="form-text">Only publicly accessible pages. Private networks, login bypasses and restricted content are blocked.</div>
+    <div class="row g-2 mt-3">
+      <div class="col-sm-4"><label class="small-label">CRAWL MODE</label><select id="mode" class="form-select"><option value="multi">Multi-page crawl</option><option value="single">Single page</option></select></div>
+      <div class="col-sm-4"><label class="small-label">MAX PAGES</label><input id="maxPages" class="form-control" type="number" min="1" max="30" value="10"></div>
+      <div class="col-sm-4"><label class="small-label">MAX DEPTH</label><input id="maxDepth" class="form-control" type="number" min="0" max="4" value="2"></div>
+    </div>
+    <div class="row g-2 mt-2"><div class="col-sm-6"><label class="small-label">INCLUDE URL PATTERNS (one per line)</label><textarea id="include" class="form-control" rows="2" placeholder="/products/"></textarea></div><div class="col-sm-6"><label class="small-label">EXCLUDE URL PATTERNS</label><textarea id="exclude" class="form-control" rows="2" placeholder="/login&#10;/cart"></textarea></div></div>
+  </div>
+</section>
+<div id="notice" class="alert d-none mt-3"></div>
+<div id="loading" class="loading-panel d-none"><div class="spinner-border text-primary"></div><div><b>Analyzing website…</b><small>Fetching public pages and extracting structured information.</small></div></div>
+<section class="stats-grid mt-4">
+ <div class="stat-card"><div class="stat-icon purple">◎</div><small>WEBSITES ANALYZED</small><strong id="statSites">0</strong><span>Saved projects</span></div>
+ <div class="stat-card"><div class="stat-icon blue">▤</div><small>PAGES EXTRACTED</small><strong id="statPages">0</strong><span>Across saved reports</span></div>
+ <div class="stat-card"><div class="stat-icon green">✓</div><small>SUCCESSFUL RUNS</small><strong id="statSuccess">0</strong><span>Completed reports</span></div>
+ <div class="stat-card"><div class="stat-icon orange">↗</div><small>DATA POINTS</small><strong id="statData">0</strong><span>Links and images</span></div>
+</section>
+<section id="results" class="results-section d-none">
+ <div class="section-heading"><div><div class="eyebrow">ANALYSIS COMPLETE</div><h3 id="resultTitle">Website report</h3><a id="resultUrl" target="_blank" rel="noopener"></a></div><div class="dropdown"><button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">Export report</button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item export-link" data-fmt="json">JSON</a></li><li><a class="dropdown-item export-link" data-fmt="csv">CSV</a></li><li><a class="dropdown-item export-link" data-fmt="xlsx">Excel</a></li><li><a class="dropdown-item export-link" data-fmt="txt">TXT</a></li><li><a class="dropdown-item export-link" data-fmt="pdf">PDF</a></li></ul></div></div>
+ <div class="tabs-wrap"><ul class="nav nav-tabs" id="reportTabs"><li class="nav-item"><button class="nav-link active" data-tab="overview">Overview</button></li><li class="nav-item"><button class="nav-link" data-tab="content">Content</button></li><li class="nav-item"><button class="nav-link" data-tab="products">Products & Services</button></li><li class="nav-item"><button class="nav-link" data-tab="contact">Contact</button></li><li class="nav-item"><button class="nav-link" data-tab="links">Pages & Links</button></li><li class="nav-item"><button class="nav-link" data-tab="media">Media</button></li><li class="nav-item"><button class="nav-link" data-tab="seo">SEO & Metadata</button></li><li class="nav-item"><button class="nav-link" data-tab="insights">AI Insights</button></li><li class="nav-item"><button class="nav-link" data-tab="raw">Raw Data</button></li></ul></div>
+ <div id="tabContent" class="tab-panel"></div>
+</section>
+<section id="history" class="history-section"><div class="section-heading"><div><div class="eyebrow">YOUR WORKSPACE</div><h3>Recent scraping projects</h3></div><button class="btn btn-sm btn-outline-secondary" id="refreshHistory">↻ Refresh</button></div><div id="historyList" class="history-list"><div class="empty-state">No reports yet. Analyze a website to get started.</div></div></section>
+<footer>WebScope AI <span>•</span> Public-web research with responsible crawling safeguards</footer>
+</main></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>
